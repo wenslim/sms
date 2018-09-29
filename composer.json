@@ -1,0 +1,19 @@
+{
+    "name": "wenslim/sms",
+    "description": "Send message",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Wenslim",
+            "email": "396902854@qq.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Wenslim\\Sms\\": "./src/"
+        }
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    }
+}
