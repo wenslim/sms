@@ -13,6 +13,13 @@
             "Wenslim\\Sms\\": "./src/"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Wenslim\\Sms\\Aliyun\\ServiceProvider"
+            ]
+        }
+    },
     "require": {
         "guzzlehttp/guzzle": "^6.3"
     }

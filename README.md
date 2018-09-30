@@ -8,9 +8,9 @@ $ composer require wenslim/sms
 ```
 
 ## 基础配置
-- 进入「[阿里云控制台](https://home.console.aliyun.com)」
-- 搜索「短信服务」
-- 点击「AccessKey」获取 `AccessKey ID` 和 `Access Key Secret`
+1. 进入「[阿里云控制台](https://home.console.aliyun.com)」
+2. 搜索「短信服务」
+3. 点击「AccessKey」获取 `AccessKey ID` 和 `Access Key Secret`
 
 ## 短信配置
 1. 短信签名
@@ -18,7 +18,7 @@ $ composer require wenslim/sms
 2. 模版 code
 > 短信服务 -> 国内消息 -> 模版管理 -> 添加模版 -> 模版CODE
 
-## 使用
+## 基础使用 
 ```php
 use Wenslim\Sms\Aliyun\Sms;
 
@@ -40,7 +40,63 @@ $sms -> setTemplateCode('xxx');
 $sms -> setTemplateParam("{'code': '1234'}");
 $sms -> send();
 ```
-返回示例：
+
+## 在 Laravel 中使用
+`config/services.php`
+```php
+.
+.
+.
+'sms' => [
+    'aliyun' => [
+        'accessKeyId' => env('SMS_ALIYUN_KEY'),
+        'accessKeySecret' => env('SMS_ALIYUN_SECRET'),
+    ],
+],
+```
+`.env`
+```php
+.
+.
+.
+SMS_ALIYUN_KEY=xxxxxx
+SMS_ALIYUN_SECRET=xxxxxx
+```
+eg. UserController.php
+
+使用方法注入
+```php
+use Wenslim\Sms\Aliyun\Sms;
+
+class UserController extends Controller
+{
+    public function send(Sms $sms)
+    {
+        $sms -> setPhoneNumbers('xxxxxx');
+    	$sms -> setSignName('xxxxxx');
+        $sms -> setTemplateCode('xxxxxx');
+        $sms -> setTemplateParam("{'code': '1234'}");
+        $response = $sms -> send();
+    }
+}
+```
+使用服务名称
+```php
+class UserController extends Controller
+{
+    public function send()
+    {
+        $sms = app('sms');
+        $sms -> setSignName('xxxxxx');
+        $sms -> setTemplateCode('xxxxxx');
+        $sms -> setTemplateParam("{'code': '1234'}");
+        $response = $sms -> send();
+    }
+}
+```
+
+
+## 返回示例
 ```php
 array(4) {
     ["Message"] => string(2) "OK"

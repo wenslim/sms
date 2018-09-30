@@ -25,7 +25,7 @@ class Sms
     /**
      * Init instance & key secret
      */
-    public function __construct($accessKeyId, $accessKeySecret)
+    public function __construct(string $accessKeyId, string $accessKeySecret)
     {
         $this -> system = new System;
         $this -> business = new Business;
