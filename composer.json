@@ -16,7 +16,8 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Wenslim\\Sms\\Aliyun\\ServiceProvider"
+                "Wenslim\\Sms\\Aliyun\\ServiceProvider",
+                "Wenslim\\Sms\\Txyun\\ServiceProvider"
             ]
         }
     },
